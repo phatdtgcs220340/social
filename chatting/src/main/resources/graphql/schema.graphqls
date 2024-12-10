@@ -1,0 +1,37 @@
+type BoxChat {
+    id : String!
+    participants : [String]!
+    messages : [Message],
+    name : String!
+}
+
+type Message {
+    id: String!,
+    userId: String!,
+    content: String!,
+    boxId : String!
+}
+
+input PageRequest {
+    pageSize : Int!,
+    page: Int!
+}
+input BoxChatInput {
+    participants : [String]!,
+    name : String
+}
+
+input BoxChatExampleInput {
+    participants : [String],
+    name : String
+}
+
+type Mutation {
+    addBoxChat(input : BoxChatInput) : BoxChat
+    addMessage(boxId : String!) : Message
+}
+
+type Query {
+    findAllBoxChatsByExample(example : BoxChatExampleInput) : [BoxChat]
+    findAllBoxChats : [BoxChat]
+}
